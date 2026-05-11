@@ -61,7 +61,7 @@ export function SearchFilters({ categories, searchParams }: Props) {
                     type="text"
                     name="query"
                     defaultValue={String(searchParams.query ?? "")}
-                    className="field pl-10"
+                    className="field !pl-10"
                     placeholder="Title, author, category"
                   />
                 </div>

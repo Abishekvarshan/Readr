@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220" role="img" aria-label="Trusted shield">
+  <rect width="320" height="220" fill="#fffaf2"/>
+  <g fill="none" stroke="#5c4033" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" opacity=".18">
+    <path d="M160 38 238 68v54c0 54-34 90-78 108-44-18-78-54-78-108V68z"/>
+    <path d="m122 131 28 28 58-66"/>
+  </g>
+  <g fill="#c89b3c" opacity=".12">
+    <circle cx="70" cy="56" r="22"/>
+    <circle cx="250" cy="164" r="28"/>
+    <circle cx="58" cy="168" r="12"/>
+  </g>
+</svg>

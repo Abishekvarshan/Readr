@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Delivery van and parcels">
+  <rect width="640" height="360" fill="#fffaf2"/>
+  <g fill="none" stroke="#5c4033" stroke-linecap="round" stroke-linejoin="round" stroke-width="10" opacity=".22">
+    <path d="M98 230h288V112H98z"/>
+    <path d="M386 230h142v-72l-48-46h-94z"/>
+    <path d="M423 133h45l34 33h-79z"/>
+    <path d="M154 230a42 42 0 1 0 84 0"/>
+    <path d="M438 230a42 42 0 1 0 84 0"/>
+    <path d="M178 230h24"/>
+    <path d="M462 230h24"/>
+    <path d="M126 148h80M126 178h130M126 208h92"/>
+  </g>
+  <g opacity=".18">
+    <rect x="268" y="56" width="78" height="72" rx="8" fill="#c89b3c"/>
+    <path d="M307 56v72" stroke="#5c4033" stroke-width="6"/>
+    <rect x="372" y="48" width="88" height="84" rx="8" fill="#c89b3c"/>
+    <path d="M416 48v84" stroke="#5c4033" stroke-width="6"/>
+    <rect x="476" y="76" width="74" height="58" rx="8" fill="#c89b3c"/>
+    <path d="M513 76v58" stroke="#5c4033" stroke-width="6"/>
+  </g>
+</svg>

@@ -10,7 +10,13 @@ export default async function BookDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <div className="container-shell py-10">
-      <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <div className="relative overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 sm:p-6">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-multiply"
+          style={{ backgroundImage: `url(${book.image_url})` }}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,250,242,0.96),rgba(245,230,211,0.86))]" />
+        <div className="relative z-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
         <div className="surface overflow-hidden">
           <img src={book.image_url} alt={book.title} className="h-full max-h-[550px] w-full object-cover" />
         </div>
@@ -61,6 +67,7 @@ export default async function BookDetailPage({ params }: { params: Promise<{ slu
             </button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

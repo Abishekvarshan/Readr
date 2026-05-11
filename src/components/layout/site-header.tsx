@@ -15,7 +15,8 @@ export async function SiteHeader() {
         <div className="container-shell flex items-center justify-between gap-3 py-2 text-xs">
           <span className="hidden sm:inline">A Home for Every Reader</span>
           <div className="ml-auto flex items-center gap-3">
-            <Link href="/books" className="hover:text-[var(--gold)]">Browse</Link>
+            <Link href="/" className="hover:text-[var(--gold)]">Home</Link>
+            <Link href="/contact" className="hover:text-[var(--gold)]">Contact us</Link>
             <Link href="/cart" className="hover:text-[var(--gold)]">Cart ({cartCount})</Link>
             {profile ? (
               <form action={logoutAction}>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BadgePercent, BookCopy, Clock3, Flame, ShieldCheck, Truck } from "lucide-react";
 import { BookCard } from "@/components/books/book-card";
 import { getBooks, getCategories, getMarketplaceStats } from "@/lib/data/queries";
@@ -8,6 +9,7 @@ const quickCategories = ["Fiction", "Self Help", "Technology", "Fantasy", "Schoo
 export default async function HomePage() {
   const [books, categories, stats] = await Promise.all([getBooks(), getCategories(), getMarketplaceStats()]);
   const featured = books.slice(0, 8);
+  const heroBook = featured[0];
   const visibleCategories = [...new Set([...categories, ...quickCategories])].slice(0, 8);
 
   return (
@@ -29,37 +31,63 @@ export default async function HomePage() {
             </nav>
           </aside>
 
-          <div className="market-shadow min-h-[260px] rounded-lg bg-[linear-gradient(120deg,#fff8ed_0%,#f5e6d3_55%,#d9b66b_100%)] p-5 sm:p-8">
-            <div className="max-w-xl">
-              <span className="badge badge-amber">Book deals for every reader</span>
-              <h1 className="mt-4 text-3xl font-black leading-tight text-[var(--brown)] sm:text-5xl">
-                Browse used books and buy in minutes.
-              </h1>
-              <p className="mt-3 max-w-lg text-sm font-medium text-[var(--muted)] sm:text-base">
-                Find affordable fiction, school books, tech guides, and rare second-hand reads with a simple mobile shopping flow.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Link href="/books" className="btn-primary">
-                  Shop books <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/books?condition=like_new" className="btn-secondary">
-                  Like-new deals
-                </Link>
+          <div className="market-shadow relative overflow-hidden rounded-lg bg-[linear-gradient(120deg,#fff8ed_0%,#f5e6d3_55%,#d9b66b_100%)]">
+            {heroBook && (
+              <Image
+                src={heroBook.image_url}
+                alt=""
+                fill
+                sizes="(max-width: 1024px) 100vw, 700px"
+                className="object-cover opacity-20 mix-blend-multiply"
+                priority
+              />
+            )}
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,250,242,0.94)_0%,rgba(245,230,211,0.86)_52%,rgba(217,182,107,0.6)_100%)]" />
+            <div className="relative z-10 flex min-h-[300px] items-center p-5 sm:p-8">
+              <div className="relative z-10 max-w-xl">
+                <span className="badge badge-amber">Book deals for every reader</span>
+                <h1 className="mt-4 text-3xl font-black leading-tight text-[var(--brown)] sm:text-5xl">
+                  Browse used books and buy in minutes.
+                </h1>
+                <p className="mt-3 max-w-lg text-sm font-medium text-[var(--muted)] sm:text-base">
+                  Find affordable fiction, school books, tech guides, and rare second-hand reads with a simple mobile shopping flow.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Link href="/books" className="btn-primary">
+                    Shop books <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link href="/books?condition=like_new" className="btn-secondary">
+                    Like-new deals
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
 
-          <aside className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+          <aside className="grid grid-cols-3 gap-2 lg:grid-cols-1 lg:gap-3">
             {[
-              { icon: Truck, label: "Islandwide delivery", value: "Fast checkout" },
-              { icon: ShieldCheck, label: "Trusted copies", value: "Condition listed" },
-              { icon: BookCopy, label: "Books available", value: `${stats.books}+ listed` },
+              {
+                icon: Truck,
+                label: "Islandwide delivery",
+                value: "Fast checkout",
+              },
+              {
+                icon: ShieldCheck,
+                label: "Trusted copies",
+                value: "Condition listed",
+              },
+              {
+                icon: BookCopy,
+                label: "Books available",
+                value: `${stats.books}+ listed`,
+              },
             ].map((item) => (
-              <div key={item.label} className="surface flex items-center gap-3 p-4">
-                <item.icon className="h-7 w-7 text-[var(--gold)]" />
-                <div>
-                  <p className="text-sm font-bold">{item.label}</p>
-                  <p className="text-xs text-muted">{item.value}</p>
+              <div key={item.label} className="surface relative flex min-h-20 flex-col items-center justify-center gap-1 overflow-hidden bg-[var(--card)] p-2 text-center lg:min-h-0 lg:flex-row lg:justify-start lg:gap-3 lg:p-4 lg:text-left">
+                <item.icon className="absolute -left-1 -top-1 h-16 w-16 text-[var(--gold)] opacity-20 lg:hidden" />
+                <item.icon className="relative z-10 h-5 w-5 shrink-0 text-[var(--gold)] lg:h-7 lg:w-7" />
+                <div className="relative z-10 min-w-0">
+                  <p className="text-[11px] font-bold leading-4 lg:text-sm">{item.label}</p>
+                  <p className="text-[10px] leading-4 text-muted lg:text-xs">{item.value}</p>
                 </div>
               </div>
             ))}
@@ -121,6 +149,7 @@ export default async function HomePage() {
           ))}
         </div>
       </section>
+
     </div>
   );
 }
